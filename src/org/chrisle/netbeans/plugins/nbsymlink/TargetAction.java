@@ -5,6 +5,7 @@ import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
 import org.openide.awt.ActionID;
 import org.openide.util.NbBundle;
+import org.openide.util.NbBundle.Messages;
 
 /**
  *
@@ -14,7 +15,7 @@ import org.openide.util.NbBundle;
         category = "Tools",
         id = "org.chrisle.netbeans.plugins.nbsymlink.TargetAction"
 )
-@NbBundle.Messages("CTL_TargetAction=Folder is target")
+@Messages("CTL_TargetAction=Folder is target")
 public class TargetAction extends AbstractAction {
     public TargetAction() {
         super(NbBundle.getMessage(TargetAction.class, "CTL_TargetAction"));
@@ -24,5 +25,4 @@ public class TargetAction extends AbstractAction {
     public void actionPerformed(ActionEvent e) {
         JOptionPane.showMessageDialog(null, "This Folder is the target.");
     }
-    
 }

@@ -17,7 +17,6 @@ import org.openide.util.NbBundle.Messages;
 )
 @Messages("CTL_SourceAction=Folder is source")
 public class SourceAction extends AbstractAction {
-    
     public SourceAction() {
         super(NbBundle.getMessage(SourceAction.class, "CTL_SourceAction"));
     }
