@@ -5,11 +5,8 @@ import java.io.File;
 import javax.swing.AbstractAction;
 import org.chrisle.netbeans.plugins.nbsymlink.components.CreateSymlinkDialog;
 import org.openide.awt.ActionID;
-import org.openide.filesystems.FileUtil;
-import org.openide.loaders.DataObject;
 import org.openide.util.NbBundle;
 import org.openide.util.NbBundle.Messages;
-import org.openide.windows.TopComponent;
 
 /**
  *
@@ -21,18 +18,23 @@ import org.openide.windows.TopComponent;
 )
 @Messages("CTL_SourceAction=Folder is source")
 public class SourceAction extends AbstractAction {
+    private File _selectedNode;
+    
     public SourceAction() {
         super(NbBundle.getMessage(SourceAction.class, "CTL_SourceAction"));
     }
 
+    public SourceAction(File selectedNode) {
+        this();
+        
+        this._selectedNode = selectedNode;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        TopComponent activeTC = TopComponent.getRegistry().getActivated();
-        DataObject dataLookup = activeTC.getLookup().lookup(DataObject.class);
-        File primaryFile = FileUtil.toFile(dataLookup.getPrimaryFile());
         CreateSymlinkDialog dialog = new CreateSymlinkDialog(null, true);
         
-        dialog.setFileChooserDir(primaryFile, true);
+        dialog.setFileChooserDir(this._selectedNode, true);
         dialog.setVisible(true);
     }
 }
