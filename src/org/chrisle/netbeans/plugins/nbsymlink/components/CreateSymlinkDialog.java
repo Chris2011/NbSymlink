@@ -52,6 +52,7 @@ public class CreateSymlinkDialog extends javax.swing.JDialog {
         _targetFolderLabel = new javax.swing.JLabel();
         _targetFolder = new javax.swing.JTextField();
         _targetFolderChooserBtn = new javax.swing.JButton();
+        _createSymlink = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -81,26 +82,34 @@ public class CreateSymlinkDialog extends javax.swing.JDialog {
             }
         });
 
+        org.openide.awt.Mnemonics.setLocalizedText(_createSymlink, org.openide.util.NbBundle.getMessage(CreateSymlinkDialog.class, "CreateSymlinkDialog._createSymlink.text")); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(_targetFolderLabel)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(_targetFolder, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(_targetFolderChooserBtn)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(_sourceFolderLabel)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(_sourceFolder, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(_sourceFolderChooserBtn))))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(_targetFolderLabel)
+                            .addComponent(_sourceFolderLabel))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 168, Short.MAX_VALUE)
+                                .addComponent(_createSymlink))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(_sourceFolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(_sourceFolderChooserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(_targetFolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(_targetFolderChooserBtn)))
+                        .addGap(32, 32, 32))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,16 +117,18 @@ public class CreateSymlinkDialog extends javax.swing.JDialog {
                 .addGap(32, 32, 32)
                 .addComponent(_sourceFolderLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(_sourceFolderChooserBtn)
-                    .addComponent(_sourceFolder, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(_sourceFolder, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(_sourceFolderChooserBtn))
                 .addGap(18, 18, 18)
                 .addComponent(_targetFolderLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(_targetFolderChooserBtn)
-                    .addComponent(_targetFolder, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(_targetFolder, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(_targetFolderChooserBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(_createSymlink)
+                .addContainerGap())
         );
 
         _targetFolderLabel.getAccessibleContext().setAccessibleName(org.openide.util.NbBundle.getMessage(CreateSymlinkDialog.class, "CreateSymlinkDialog._targetFolderLabel.AccessibleContext.accessibleName")); // NOI18N
@@ -176,6 +187,7 @@ public class CreateSymlinkDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton _createSymlink;
     private javax.swing.JTextField _sourceFolder;
     private javax.swing.JButton _sourceFolderChooserBtn;
     private javax.swing.JLabel _sourceFolderLabel;
