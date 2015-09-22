@@ -12,7 +12,6 @@ import org.openide.util.NbBundle;
 import org.openide.util.NbBundle.Messages;
 import org.openide.util.actions.Presenter;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import org.chrisle.netbeans.plugins.nbsymlink.subactions.SourceAction;
 import org.chrisle.netbeans.plugins.nbsymlink.subactions.TargetAction;
 import org.openide.filesystems.FileUtil;
@@ -40,7 +39,7 @@ public final class NbSymlinkAction extends AbstractAction implements Presenter.P
     public NbSymlinkAction() {
         super(NbBundle.getMessage(NbSymlinkAction.class, "CTL_NbSymlinkAction"));
     }
-    
+
     @Override
     public JMenuItem getPopupPresenter() {
         TopComponent activeTC = TopComponent.getRegistry().getActivated();
