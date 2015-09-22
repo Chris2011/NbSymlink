@@ -152,6 +152,9 @@
           <ResourceString bundle="org/chrisle/netbeans/plugins/nbsymlink/components/Bundle.properties" key="CreateSymlinkDialog._createSymlink.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="_createSymlinkActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

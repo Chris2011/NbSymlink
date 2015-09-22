@@ -6,7 +6,10 @@
 package org.chrisle.netbeans.plugins.nbsymlink.components;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import javax.swing.JFileChooser;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -22,14 +25,15 @@ public class CreateSymlinkDialog extends javax.swing.JDialog {
     public CreateSymlinkDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         this._fileChooser = new JFileChooser();
+        this._fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
     }
-    
+
     public void setFileChooserDir(File currentFolder, boolean isSource) {
         this._currentFolder = currentFolder;
         this._fileChooser.setCurrentDirectory(currentFolder);
-        
+
         if (isSource) {
             this._sourceFolder.setText(currentFolder.getPath());
         } else {
@@ -83,6 +87,11 @@ public class CreateSymlinkDialog extends javax.swing.JDialog {
         });
 
         org.openide.awt.Mnemonics.setLocalizedText(_createSymlink, org.openide.util.NbBundle.getMessage(CreateSymlinkDialog.class, "CreateSymlinkDialog._createSymlink.text")); // NOI18N
+        _createSymlink.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                _createSymlinkActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -143,6 +152,14 @@ public class CreateSymlinkDialog extends javax.swing.JDialog {
     private void _targetFolderChooserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__targetFolderChooserBtnActionPerformed
         this._fileChooser.showOpenDialog(null);
     }//GEN-LAST:event__targetFolderChooserBtnActionPerformed
+
+    private void _createSymlinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__createSymlinkActionPerformed
+        try {
+            Files.createSymbolicLink(new File(_sourceFolder.getText()).toPath(), new File(_targetFolder.getText()).toPath());
+        } catch (IOException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+    }//GEN-LAST:event__createSymlinkActionPerformed
 
     /**
      * @param args the command line arguments
