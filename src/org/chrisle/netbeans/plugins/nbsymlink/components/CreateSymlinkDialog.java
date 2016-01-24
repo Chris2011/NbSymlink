@@ -1,22 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.chrisle.netbeans.plugins.nbsymlink.components;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileSystemException;
 import java.nio.file.Files;
 import javax.swing.JFileChooser;
-import org.openide.util.Exceptions;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
  * @author ChrisLE
  */
 public class CreateSymlinkDialog extends javax.swing.JDialog {
-    private JFileChooser _fileChooser;
+    private final JFileChooser _fileChooser;
     private File _currentFolder;
     
     /**
@@ -146,18 +143,32 @@ public class CreateSymlinkDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void _sourceFolderChooserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__sourceFolderChooserBtnActionPerformed
-        this._fileChooser.showOpenDialog(null);
+        fileChooserDialog(_sourceFolder);
     }//GEN-LAST:event__sourceFolderChooserBtnActionPerformed
 
     private void _targetFolderChooserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__targetFolderChooserBtnActionPerformed
-        this._fileChooser.showOpenDialog(null);
+        fileChooserDialog(_targetFolder);
     }//GEN-LAST:event__targetFolderChooserBtnActionPerformed
+
+    public boolean fileChooserDialog(JTextField folderField) {
+        int dialogState = this._fileChooser.showOpenDialog(null);
+
+        if (dialogState == JFileChooser.CANCEL_OPTION) {
+            return true;
+        }
+
+        folderField.setText(this._fileChooser.getSelectedFile().getAbsolutePath());
+        
+        return false;
+    }
 
     private void _createSymlinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__createSymlinkActionPerformed
         try {
             Files.createSymbolicLink(new File(_sourceFolder.getText()).toPath(), new File(_targetFolder.getText()).toPath());
         } catch (IOException ex) {
-            Exceptions.printStackTrace(ex);
+            if (ex instanceof FileSystemException) {
+                JOptionPane.showMessageDialog(null, "Please restart Netbeans with admin rights to use this feature.");
+            }
         }
     }//GEN-LAST:event__createSymlinkActionPerformed
 
