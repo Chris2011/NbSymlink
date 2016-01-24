@@ -2,11 +2,13 @@ package org.chrisle.netbeans.plugins.nbsymlink.components;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.FileSystemException;
 import java.nio.file.Files;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -164,11 +166,14 @@ public class CreateSymlinkDialog extends javax.swing.JDialog {
 
     private void _createSymlinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__createSymlinkActionPerformed
         try {
-            Files.createSymbolicLink(new File(_sourceFolder.getText()).toPath(), new File(_targetFolder.getText()).toPath());
+            Files.createSymbolicLink(new File(_targetFolder.getText()).toPath(), new File(_sourceFolder.getText()).toPath());
+        } catch (FileAlreadyExistsException ex) {
+            JOptionPane.showMessageDialog(null, "Symlink already exists: " + _targetFolder.getText());
+        } catch (FileSystemException ex) {
+            Exceptions.printStackTrace(ex);
+            JOptionPane.showMessageDialog(null, "Please restart Netbeans with admin rights to use this feature.");
         } catch (IOException ex) {
-            if (ex instanceof FileSystemException) {
-                JOptionPane.showMessageDialog(null, "Please restart Netbeans with admin rights to use this feature.");
-            }
+            Exceptions.printStackTrace(ex);
         }
     }//GEN-LAST:event__createSymlinkActionPerformed
 
