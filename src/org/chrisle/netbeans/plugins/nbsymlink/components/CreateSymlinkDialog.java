@@ -58,6 +58,7 @@ public class CreateSymlinkDialog extends javax.swing.JDialog {
         _createSymlink = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle(org.openide.util.NbBundle.getMessage(CreateSymlinkDialog.class, "CreateSymlinkDialog.title")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(_sourceFolderLabel, org.openide.util.NbBundle.getMessage(CreateSymlinkDialog.class, "CreateSymlinkDialog._sourceFolderLabel.text")); // NOI18N
 
@@ -167,13 +168,14 @@ public class CreateSymlinkDialog extends javax.swing.JDialog {
     private void _createSymlinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__createSymlinkActionPerformed
         try {
             Files.createSymbolicLink(new File(_targetFolder.getText()).toPath(), new File(_sourceFolder.getText()).toPath());
+            this.setVisible(false);
         } catch (FileAlreadyExistsException ex) {
             JOptionPane.showMessageDialog(null, "Symlink already exists: " + _targetFolder.getText());
         } catch (FileSystemException ex) {
-            Exceptions.printStackTrace(ex);
             JOptionPane.showMessageDialog(null, "Please restart Netbeans with admin rights to use this feature.");
         } catch (IOException ex) {
             Exceptions.printStackTrace(ex);
+            JOptionPane.showMessageDialog(null, "Ooops, this was an unexpected error. Please see the IDE log for more info.");
         }
     }//GEN-LAST:event__createSymlinkActionPerformed
 
