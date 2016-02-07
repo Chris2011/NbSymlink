@@ -32,7 +32,7 @@ public class TargetAction extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        CreateSymlinkDialog dialog = new CreateSymlinkDialog(null, true);
+        CreateSymlinkDialog dialog = new CreateSymlinkDialog();
         
         dialog.setFileChooserDir(this._selectedNode, false);
         dialog.setVisible(true);
