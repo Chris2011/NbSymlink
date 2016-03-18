@@ -35,6 +35,6 @@ public class TargetAction extends AbstractAction {
         CreateSymlinkDialog dialog = new CreateSymlinkDialog();
         
         dialog.setFileChooserDir(this._selectedNode, false);
-        dialog.setVisible(true);
+        dialog.showDialog();
     }
 }

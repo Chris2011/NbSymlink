@@ -1,5 +1,7 @@
 package org.chrisle.netbeans.plugins.nbsymlink.components;
 
+import java.awt.Component;
+import java.awt.KeyboardFocusManager;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
@@ -144,7 +146,6 @@ public class CreateSymlinkDialog extends JDialog {
         _targetFolderLabel.getAccessibleContext().setAccessibleName(org.openide.util.NbBundle.getMessage(CreateSymlinkDialog.class, "CreateSymlinkDialog._targetFolderLabel.AccessibleContext.accessibleName")); // NOI18N
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void _sourceFolderChooserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__sourceFolderChooserBtnActionPerformed
@@ -220,9 +221,24 @@ public class CreateSymlinkDialog extends JDialog {
                     }
                 });
 
-                dialog.setVisible(true);
+//                dialog.showDialog();
             }
         });
+    }
+    
+    public void showDialog() {
+        // try to use monitor, where the input focus is
+        // therefor get the topmost component based on the input focus
+        Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
+
+        if (null != focusOwner) {
+            while (focusOwner.getParent() != null) {
+                focusOwner = focusOwner.getParent();
+            }
+        }
+
+        this.setLocationRelativeTo(focusOwner);
+        this.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
